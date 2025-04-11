@@ -1,26 +1,47 @@
-public class zXq29MainSortz{
+public class NumberSorter {
 
-public static void runIt(double[] LOLz)
-{
-    for(int a=0;a<LOLz.length;a++)
-{
-    for(int b=0;b<LOLz.length-1;b++)
-{
-if(LOLz[b]<LOLz[b+1]) // BUG: should be > for ascending
-{
-double tmp=LOLz[b];
-LOLz[b]=LOLz[b+1];
-LOLz[b+1]=tmp;
-}
-}
-}
-System.out.println("sorted??");
-for(int x=0;x<=LOLz.length;x++) // BUG: should be x<LOLz.length
-System.out.print(LOLz[x]+" "); // BUG: may throw ArrayIndexOutOfBoundsException
-}
+    // Method to sort an array in ascending order
+    public static void sortAscending(double[] numbers) {
+        int n = numbers.length;
+        boolean swapped;
 
-public static void main(String ARGz[]){
-double[] numz={5.5, 1.1, 4.4, 3.3};
-runIt(numz);
-}
+        // Bubble sort algorithm
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false;
+
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (numbers[j] > numbers[j + 1]) {
+                    // Swap numbers[j] and numbers[j + 1]
+                    double temp = numbers[j];
+                    numbers[j] = numbers[j + 1];
+                    numbers[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+
+            // If no two elements were swapped in inner loop, array is sorted
+            if (!swapped) break;
+        }
+    }
+
+    // Method to print the array
+    public static void printArray(double[] numbers) {
+        for (double num : numbers) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+    // Main method
+    public static void main(String[] args) {
+        double[] numbers = {5.5, 1.1, 4.4, 3.3};
+
+        System.out.println("Before sorting:");
+        printArray(numbers);
+
+        sortAscending(numbers);
+
+        System.out.println("After sorting:");
+        printArray(numbers);
+    }
 }
